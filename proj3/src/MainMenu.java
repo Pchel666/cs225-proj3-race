@@ -30,7 +30,11 @@ public class MainMenu extends BorderPane {
         setButton(quit);
 
 
-        setStyle("-fx-background-color: black");
+        setStyle("-fx-background-color: black;" +
+                "-fx-border-color: yellow;" +
+                "-fx-border-width: 0 10 0 10px;" +
+                "-fx-border-insets: 10 40 10 40px");
+        
         setBottom(makeButtonBox());
 
         ImageView img = new ImageView(new Image("raceCar.jpg"));
@@ -39,6 +43,10 @@ public class MainMenu extends BorderPane {
         setupTopText();
     }
 
+    /**
+     * creates a button and sets parameters for the button
+     * @param btn the created button
+     */
     private void setButton( Button btn ){
 
         if( btn == null )
@@ -70,7 +78,9 @@ public class MainMenu extends BorderPane {
         Text top = new Text("Super Awesome Extreme \nRacing!!!");
         top.setFill(Color.RED);
         top.setStyle("-fx-background-color: transparent;" +
-                "-fx-font-size: 20;");
+                "-fx-font-size: 20;" +
+                "-fx-font-style: italic;" +
+                "-fx-font-weight: bold");
 
         top.setTextAlignment(TextAlignment.CENTER);
 
