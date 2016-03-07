@@ -1,15 +1,13 @@
 public class Car {
     private int maxSpeed;
-    private int weight;
     private int posX;
     private int posY;
-    private String color;
+    private Color color;
     private String name;
     private String engine;
     private String tire;
 
     public Car(){
-        weight = 100;
         posX = 1;
         posY = 1;
         color = "blue";
@@ -33,8 +31,7 @@ public class Car {
         maxSpeed = maxSpeed / (weight / 50);
     }
 
-    public Car(int weight, int posX, int posY, String color, String name, String engine, String tire){
-        this.weight = weight;
+    public Car(int posX, int posY, String color, String name, String engine, String tire){
         this.posX = posX;
         this.posY = posY;
         this.color = color;
@@ -85,14 +82,6 @@ public class Car {
         {
             maxSpeed = speed;
         }
-    }
-
-    public int getWeight(){
-        return weight;
-    }
-
-    public void setWeight(int weight){
-        this.weight = weight;
     }
 
     public int getPosX(){
