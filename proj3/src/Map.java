@@ -1,27 +1,22 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Map {
-    private ArrayList<Location> locations;
-    private int size;
+    private int[][] locations;
+    private Random rand;
+    private static final int numOfTerrain = 3;
 
-    public Map(ArrayList<Location> locations, int size) {
-        this.locations = new ArrayList<Location>();
-        this.size = size;
+    public Map(int size) {
+        rand = new Random();
+        this.locations = new int[size][size];
+        for(int i = 0; i < locations.length; i++) {
+            for(int j = 0; j < locations[i].length; j++) {
+                locations[i][j] = rand.nextInt(numOfTerrain);
+            }
+        }
     }
 
-    public Location getLocation(int locationIndex) {
-        return locations.get(locationIndex);
-    }
-
-//    public void setLocation(Location newLocation, int locationIndex){
-//
-//    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int newSize) {
-        this.size = newSize;
+    public int[][] getLocations() {
+        return locations;
     }
 }
