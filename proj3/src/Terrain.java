@@ -10,3 +10,4 @@ public class Terrain {
         this.location =  new Location(xCoord, yCoord);
     }
 }
+//TO BE REMOVED
