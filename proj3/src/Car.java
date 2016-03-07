@@ -4,7 +4,6 @@ public class Car {
     private int posY;
     private Color color;
     private String name;
-    private String engine;
     private String tire;
 
     public Car(){
@@ -12,76 +11,25 @@ public class Car {
         posY = 1;
         color = "blue";
         name = "car1";
-        engine = "medium";
         tire = "regular";
         maxSpeed = 50;
-        switch (engine.toLowerCase()){
-            case "small":
-                maxSpeed = maxSpeed + 10;
-                break;
-            case "medium":
-                maxSpeed = maxSpeed + 20;
-                break;
-            case "large":
-                maxSpeed = maxSpeed + 30;
-                break;
-            default:
-                break;
-        }
-        maxSpeed = maxSpeed / (weight / 50);
     }
 
-    public Car(int posX, int posY, String color, String name, String engine, String tire){
+    public Car(int posX, int posY, String color, String name, String tire){
         this.posX = posX;
         this.posY = posY;
         this.color = color;
         this.name = name;
-        this.engine = engine;
         this.tire = tire;
         maxSpeed = 50;
-        switch (engine.toLowerCase()){
-            case "small":
-                maxSpeed = maxSpeed + 10;
-                break;
-            case "medium":
-                maxSpeed = maxSpeed + 20;
-                break;
-            case "large":
-                maxSpeed = maxSpeed + 30;
-                break;
-            default:
-                break;
-        }
-        maxSpeed = maxSpeed / (weight / 50);
     }
 
     public int getMaxSpeed(){
         return maxSpeed;
     }
 
-    public void setMaxSpeed(int speed, boolean formulaOrNot){
-        if (formulaOrNot)
-        {
-            maxSpeed = 50;
-            switch (engine.toLowerCase()){
-                case "small":
-                    maxSpeed = maxSpeed + 10;
-                    break;
-                case "medium":
-                    maxSpeed = maxSpeed + 20;
-                    break;
-                case "large":
-                    maxSpeed = maxSpeed + 30;
-                    break;
-                default:
-                    break;
-            }
-            maxSpeed = maxSpeed / weight;
-        }
-        else
-        {
-            maxSpeed = speed;
-        }
+    public void setMaxSpeed(int maxSpeed){
+        this.maxSpeed = maxSpeed;
     }
 
     public int getPosX(){
@@ -114,14 +62,6 @@ public class Car {
 
     public void setName(String name){
         this.name = name;
-    }
-
-    public String getEngine(){
-        return engine;
-    }
-
-    public void setEngine(String engine){
-        this.engine = engine;
     }
 
     public String getTire(){
