@@ -57,6 +57,10 @@ public class MainMenu extends BorderPane {
         btn.setMinWidth(20);
     }
 
+    /**
+     * makes a box of buttons
+     * @return
+     */
     private VBox makeButtonBox(){
 
         VBox box = new VBox();
