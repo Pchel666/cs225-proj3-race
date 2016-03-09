@@ -16,13 +16,24 @@ public class Main extends Application {
         OptionsMenu options = new OptionsMenu();
         Scene optionsScene = new Scene(options, 600, 400);
 
+        RaceGui race = new RaceGui();
+        Scene raceScene = new Scene(race, 800, 600 );
+
         menu.getQuit().setOnAction(e-> System.exit(0));
+
+        menu.getStartButton().setOnAction(e->
+                primaryStage.setScene(
+                        raceScene ));
 
         menu.getOptions().setOnAction(e->
                 primaryStage.setScene(
                         optionsScene));
 
         options.getBack().setOnAction(e->
+                primaryStage.setScene(
+                        menuScene));
+
+        race.getBack().setOnAction(e->
                 primaryStage.setScene(
                         menuScene));
 
