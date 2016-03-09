@@ -24,12 +24,16 @@ public class Main extends Application {
         menu.getStartButton().setOnAction(e->
                 primaryStage.setScene(
                         raceScene ));
-        
+
         menu.getOptions().setOnAction(e->
                 primaryStage.setScene(
                         optionsScene));
 
         options.getBack().setOnAction(e->
+                primaryStage.setScene(
+                        menuScene));
+
+        race.getBack().setOnAction(e->
                 primaryStage.setScene(
                         menuScene));
 
