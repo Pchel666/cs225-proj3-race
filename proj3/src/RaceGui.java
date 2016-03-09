@@ -1,19 +1,19 @@
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 
 /**
  * Created by Corey on 3/6/2016.
  */
 public class RaceGui extends BorderPane {
 
-    private Map map;
     private Button back;
+    private Race race;
 
     public RaceGui(){
 
+        race = new Race(4);
         back = new Button("Back");
         setupCenter();
         setupBottom();
@@ -25,7 +25,11 @@ public class RaceGui extends BorderPane {
         grid.setStyle("-fx-background-color: black;" +
                 "-fx-border-width: 8px;" +
                 "-fx-border-color: darkgoldenrod");
-        
+
+        grid.getColumnConstraints().add(new ColumnConstraints(15));
+        grid.getRowConstraints().add(new RowConstraints(15));
+
+        grid.add(new Button("heath leger"), 100, 40);
 
         setCenter(grid);
     }
@@ -42,9 +46,19 @@ public class RaceGui extends BorderPane {
                 "-fx-border-width: 12px");
 
         Button start = new Button("start");
+        start.setOnAction(e->{
+        });
 
         box.getChildren().addAll(start, back);
 
         setBottom(box);
+    }
+
+    public Button getBack(){
+        return back;
+    }
+
+    public void vroomVroom(){
+
     }
 }
