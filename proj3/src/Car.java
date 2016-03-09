@@ -1,3 +1,8 @@
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
+
+import java.awt.*;
+
 public class Car {
     private int maxSpeed;
     private int posX;
@@ -9,13 +14,13 @@ public class Car {
     public Car(){
         posX = 1;
         posY = 1;
-        color = "blue";
+        color = Color.BLUE;
         name = "car1";
         tire = "regular";
         maxSpeed = 50;
     }
 
-    public Car(int posX, int posY, String color, String name, String tire){
+    public Car(int posX, int posY, Color color, String name, String tire){
         this.posX = posX;
         this.posY = posY;
         this.color = color;
@@ -48,11 +53,11 @@ public class Car {
         this.posY = posY;
     }
 
-    public String getColor(){
+    public Color getColor(){
         return color;
     }
 
-    public void setColor(String color){
+    public void setColor(Color color){
         this.color = color;
     }
 
