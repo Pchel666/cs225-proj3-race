@@ -21,7 +21,7 @@ public class Race {
         int temp;
         for(int i=0; i< cars.length; i++) {
             temp = rand.nextInt(citiesTemp.size());
-            cars[i] = new Car(createCarColor(), name(i), selectTire());
+            cars[i] = new Car(1,1,createCarColor(), name(i), selectTire());
             carAndLocation.put(cars[i], citiesTemp.get(temp));
             citiesTemp.remove(temp);
         }
@@ -33,8 +33,8 @@ public class Race {
 
     //carNumber pick 1-4
     public void setCarsLocation(int carNumber, int x, int y) {
-        carAndLocation.get(cars[carNumber + 1]).setXCoord(x);
-        carAndLocation.get(cars[carNumber + 1]).setYCoord(y);
+        carAndLocation.get(cars[carNumber + 1]).setPosX(x);
+        carAndLocation.get(cars[carNumber + 1]).setPosY(y);
     }
 
     private Color createCarColor() {
