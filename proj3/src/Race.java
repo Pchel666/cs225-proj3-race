@@ -5,37 +5,60 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Race {
-    private HashMap<Car, Location> carAndLocation;
     private Map map;
     private Random rand;
     private ArrayList<Location> cities;
     private Car[] cars;
+    private int mapSize;
 
-    public Race(int numberOfCars) {
+    public Race(int numberOfCars,int mapSize) {
         rand = new Random();
         cars = new Car[numberOfCars];
+        this.mapSize = mapSize;
 
-        this.map = new Map(10);
+        this.map = new Map(mapSize);
         cities = map.getCities(); //returns 4 cities
         ArrayList<Location> citiesTemp = cities;
-        this.carAndLocation = new HashMap<Car, Location>();
         int temp;
         for(int i=0; i< cars.length; i++) {
             temp = rand.nextInt(citiesTemp.size());
-            cars[i] = new Car( 1, 1, createCarColor(), name(i), selectTire());
-            carAndLocation.put(cars[i], citiesTemp.get(temp));
+            cars[i] = new Car(cities.get(temp).getXCoord(), cities.get(temp).getYCoord(), createCarColor(), name(i), selectTire());
             citiesTemp.remove(temp);
         }
     }
 
-    //TODO ADD MORE METHODS
-    
-    public HashMap<Car, Location> getCarAndLocation() { return carAndLocation; }
+    public Car[] getCars() {
+        return cars;
+    }
 
     //carNumber pick 1-4
-    public void setCarsLocation(int carNumber, int x, int y) {
-        carAndLocation.get(cars[carNumber + 1]).setXCoord(x);
-        carAndLocation.get(cars[carNumber + 1]).setYCoord(y);
+    public void setCarsXLocation(int carNumber, int x) {
+        cars[carNumber + 1].setPosX(x);
+    }
+    public void setCarsYLocation(int carNumber, int y) {
+        cars[carNumber + 1].setPosY(y);
+    }
+
+    public int getMapSize() {
+        return mapSize;
+    }
+
+    public ArrayList<Location> getCities() {
+        return cities;
+    }
+
+    //get the cars starting point
+    //then where it is suppose to be going
+    //map out the route the car is suppose to be taking
+    //
+
+    public void moveCar(int carNumber) {
+        int x = cars[carNumber + 1].getPosX();
+        int y = cars[carNumber + 1].getPosY();
+
+        //work on
+        setCarsXLocation(carNumber, x + cars[carNumber + 1].getMaxSpeed());
+        setCarsYLocation(carNumber, y + cars[carNumber + 1].getMaxSpeed());
     }
 
     private Color createCarColor() {

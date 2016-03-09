@@ -15,9 +15,9 @@ public class Car {
         posX = 1;
         posY = 1;
         color = Color.BLUE;
-        name = "car1";
-        tire = "regular";
-        maxSpeed = 50;
+        name = "testCar";
+        tire = "Regular";
+        maxSpeed = 3;
     }
 
     public Car(int posX, int posY, Color color, String name, String tire){
@@ -26,7 +26,13 @@ public class Car {
         this.color = color;
         this.name = name;
         this.tire = tire;
-        maxSpeed = 50;
+
+        switch (tire) {
+            case "Regular": maxSpeed = 3; break;
+            case "Dirt": maxSpeed = 2; break;
+            case "Snow": maxSpeed = 2; break;
+            default: System.out.println("Error: expecting Regular, Dirt, or Snow."); break;
+        }
     }
 
     public int getMaxSpeed(){
