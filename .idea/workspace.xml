@@ -12,8 +12,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/proj3/RaceGui.class" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/proj3/raceCar.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proj3/src/Main.java" afterPath="$PROJECT_DIR$/proj3/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proj3/src/RaceGui.java" afterPath="$PROJECT_DIR$/proj3/src/RaceGui.java" />
     </list>
     <ignored path="cs225-proj3-race.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -758,7 +756,7 @@
       <option name="number" value="Default" />
       <updated>1456857922492</updated>
       <workItem from="1457369846857" duration="664000" />
-      <workItem from="1457536072494" duration="4154000" />
+      <workItem from="1457536072494" duration="4184000" />
     </task>
     <task id="LOCAL-00001" summary="update to car">
       <created>1457539459764</created>
@@ -772,11 +770,17 @@
       <option name="project" value="LOCAL" />
       <updated>1457540193125</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="changes to main and racegui">
+      <created>1457542524874</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1457542524874</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4818000" />
+    <option name="totallyTimeSpent" value="4848000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
@@ -820,7 +824,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update to car" />
-    <option name="LAST_COMMIT_MESSAGE" value="update to car" />
+    <MESSAGE value="changes to main and racegui" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes to main and racegui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
