@@ -1,4 +1,5 @@
-import java.awt.*;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -21,7 +22,7 @@ public class Race {
         int temp;
         for(int i=0; i< cars.length; i++) {
             temp = rand.nextInt(citiesTemp.size());
-            cars[i] = new Car(createCarColor(), name(i), selectTire());
+            cars[i] = new Car( 1, 1, createCarColor(), name(i), selectTire());
             carAndLocation.put(cars[i], citiesTemp.get(temp));
             citiesTemp.remove(temp);
         }
@@ -42,7 +43,7 @@ public class Race {
         int g = rand.nextInt(256);
         int b = rand.nextInt(256);
 
-        return new Color(r, g, b);
+        return Color.rgb(r, g, b );
     }
 
     private String name(int carCount) {
