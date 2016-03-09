@@ -26,11 +26,20 @@ public class RaceGui extends BorderPane {
                 "-fx-border-width: 8px;" +
                 "-fx-border-color: darkgoldenrod");
 
-        grid.getColumnConstraints().add(new ColumnConstraints(15));
-        grid.getRowConstraints().add(new RowConstraints(15));
 
-        grid.add(new Button("heath leger"), 100, 40);
+        ColumnConstraints col = new ColumnConstraints(20);
+        for( int i = 0; i < 20; i++ )
+            grid.getColumnConstraints().add(col);
 
+        RowConstraints row = new RowConstraints(20);
+        for( int i = 0; i < 20; i++ )
+            grid.getRowConstraints().add(row);
+
+        grid.add(new Button("e"), 10, 4);
+        grid.add(new Button("h"), 3, 10);
+
+        grid.add(new Button("cat"), 10, 5);
+        grid.setAlignment(Pos.CENTER);
         setCenter(grid);
     }
 
