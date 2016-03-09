@@ -1,29 +1,40 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Race {
-    private ArrayList<Car> cars;
+    private HashMap<Car, Location> carAndLocation;
     private Map map;
     private Random rand;
+    private ArrayList<Location> cities;
+    private Car[] cars;
 
     public Race(int numberOfCars) {
         rand = new Random();
-        this.cars = new ArrayList<Car>();
-        for(int i=0; i< numberOfCars; i++) {
-            cars.add(new Car(createCarColor(), name(i), selectEngine(), selectTire()));
+        cars = new Car[numberOfCars];
+
+        this.map = new Map(10);
+        cities = map.getCities(); //returns 4 cities
+        ArrayList<Location> citiesTemp = cities;
+        this.carAndLocation = new HashMap<Car, Location>();
+        int temp;
+        for(int i=0; i< cars.length; i++) {
+            temp = rand.nextInt(citiesTemp.size());
+            cars[i] = new Car(createCarColor(), name(i), selectTire());
+            carAndLocation.put(cars[i], citiesTemp.get(temp));
+            citiesTemp.remove(temp);
         }
     }
 
-    public enum Engine {
-        SMALL, MEDIUM, LARGE
-    }
+    //TODO ADD MORE METHODS
+    
+    public HashMap<Car, Location> getCarAndLocation() { return carAndLocation; }
 
-    public enum Tire {
-        DIRT, RAIN, REGULAR
+    //carNumber pick 1-4
+    public void setCarsLocation(int carNumber, int x, int y) {
+        carAndLocation.get(cars[carNumber + 1]).setXCoord(x);
+        carAndLocation.get(cars[carNumber + 1]).setYCoord(y);
     }
 
     private Color createCarColor() {
@@ -35,52 +46,17 @@ public class Race {
     }
 
     private String name(int carCount) {
-        return "Car_" + i;
+        return "Car_" + carCount;
     }
 
-    //how many engines there are.
-    public static final int engines = Engine.values().length;
-    private String selectEngine() {
-        int value = rand.nextInt(engines);
-        String size = "";
-        //there should be three engine types
-        switch (value){
-            case 1:
-                size = "small";
-                break;
-            case 2:
-                size = "medium";
-                break;
-            case 3:
-                size = "large";
-                break;
-            default:
-                // this should show an error message
-                System.out.println("error");
-                break;
-        }
-        return size;
-    }
-
-    public static final Tire[] tires = Tire.values();
     private String selectTire() {
-        int value = rand.nextInt(tires.length);
+        int value = rand.nextInt(3);
         String type = "";
-        //there should be three engine types
-        switch (tires[value]) {
-            case DIRT:
-                type = "dirt";
-                break;
-            case RAIN:
-                type = "rain";
-                break;
-            case REGULAR:
-                type = "regular";
-                break;
-            default:
-                // this should show an error message
-                System.out.println("error");
-                break;
+        switch (value) {
+            case 0: type = "Regular"; break;
+            case 1:type = "Dirt"; break;
+            case 2: type = "Snow"; break;
+            default: System.out.println("Error: expecting integer 0-2"); break;
         }
         return type;
     }
