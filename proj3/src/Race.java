@@ -1,7 +1,6 @@
 import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Race {
@@ -11,20 +10,24 @@ public class Race {
     private Car[] cars;
     private int mapSize;
 
-    public Race(int numberOfCars,int mapSize) {
+    public Race(int mapSize) {
         rand = new Random();
-        cars = new Car[numberOfCars];
+        cars = new Car[4];
         this.mapSize = mapSize;
 
         this.map = new Map(mapSize);
         cities = map.getCities(); //returns 4 cities
-        ArrayList<Location> citiesTemp = cities;
+        ArrayList<Location> citiesTemp = (ArrayList<Location>) cities.clone();
         int temp;
         for(int i=0; i< cars.length; i++) {
             temp = rand.nextInt(citiesTemp.size());
-            cars[i] = new Car(cities.get(temp).getXCoord(), cities.get(temp).getYCoord(), createCarColor(), name(i), selectTire());
+            cars[i] = new Car(citiesTemp.get(temp).getXCoord(), citiesTemp.get(temp).getYCoord(), createCarColor(), name(i), selectTire());
             citiesTemp.remove(temp);
         }
+    }
+
+    public Map getMap() {
+        return map;
     }
 
     public Car[] getCars() {
