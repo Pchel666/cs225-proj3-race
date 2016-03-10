@@ -1,7 +1,6 @@
 import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Race {
@@ -11,32 +10,36 @@ public class Race {
     private Car[] cars;
     private int mapSize;
 
-    public Race(int numberOfCars,int mapSize) {
+    public Race(int mapSize) {
         rand = new Random();
-        cars = new Car[numberOfCars];
+        cars = new Car[4];
         this.mapSize = mapSize;
 
         this.map = new Map(mapSize);
         cities = map.getCities(); //returns 4 cities
-        ArrayList<Location> citiesTemp = cities;
+        ArrayList<Location> citiesTemp = (ArrayList<Location>) cities.clone();
         int temp;
         for(int i=0; i< cars.length; i++) {
             temp = rand.nextInt(citiesTemp.size());
-            cars[i] = new Car(cities.get(temp).getXCoord(), cities.get(temp).getYCoord(), createCarColor(), name(i), selectTire());
+            cars[i] = new Car(citiesTemp.get(temp).getXCoord(), citiesTemp.get(temp).getYCoord(), createCarColor(), name(i), selectTire());
             citiesTemp.remove(temp);
         }
+    }
+
+    public Map getMap() {
+        return map;
     }
 
     public Car[] getCars() {
         return cars;
     }
 
-    //carNumber pick 1-4
+    //pick carNumber 0-3
     public void setCarsXLocation(int carNumber, int x) {
-        cars[carNumber + 1].setPosX(x);
+        cars[carNumber].setPosX(x);
     }
     public void setCarsYLocation(int carNumber, int y) {
-        cars[carNumber + 1].setPosY(y);
+        cars[carNumber].setPosY(y);
     }
 
     public int getMapSize() {
@@ -52,13 +55,14 @@ public class Race {
     //map out the route the car is suppose to be taking
     //
 
+    //pick carNumber 0-3
     public void moveCar(int carNumber) {
-        int x = cars[carNumber + 1].getPosX();
-        int y = cars[carNumber + 1].getPosY();
+        int x = cars[carNumber].getPosX();
+        int y = cars[carNumber].getPosY();
 
         //work on
-        setCarsXLocation(carNumber, x + cars[carNumber + 1].getMaxSpeed());
-        setCarsYLocation(carNumber, y + cars[carNumber + 1].getMaxSpeed());
+        setCarsXLocation(carNumber, x + cars[carNumber].getMaxSpeed());
+        setCarsYLocation(carNumber, y + cars[carNumber].getMaxSpeed());
     }
 
     private Color createCarColor() {
