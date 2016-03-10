@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.util.concurrent.TimeUnit;
@@ -43,6 +45,9 @@ public class RaceGui extends BorderPane {
         for( int i = 0; i < race.getMapSize(); i++ )
             grid.getRowConstraints().add(row);
 
+        Circle city = new Circle(8, Color.GREEN);
+
+        grid.add( city, race.getCities().get(0).getXCoord(), race.getCities().get(0).getYCoord() );
         grid.setAlignment(Pos.CENTER);
         setCenter(grid);
     }
@@ -76,21 +81,21 @@ public class RaceGui extends BorderPane {
 
         Image carUno = new Image("CarPic.png");
         ImageView car = new ImageView(carUno);
-        car.setFitHeight(15);
-        car.setFitWidth(20);
+        car.setFitHeight(20);
+        car.setFitWidth(25);
 
         grid.add( car, 0, 0 );
 
         for( int i = 1; i < 4; i++ ){
-
-            grid.getChildren().remove(car);
-            grid.add(car, i*4, i*4);
 
             try {
                 Thread.sleep(1000);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
+
+            grid.getChildren().remove(car);
+            grid.add(car, i*4, i*4);
         }
     }
 }
