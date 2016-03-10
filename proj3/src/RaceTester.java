@@ -11,7 +11,7 @@ public class RaceTester {
         cities = race.getCities();
         System.out.println("Cities: ");
         for (Location l : cities) {
-            System.out.println("x: " + l.getXCoord() + " y: " + l.getYCoord() + " name: " + ";");
+            System.out.println("x: " + l.getXCoord() + " y: " + l.getYCoord() + ";");
         }
         Car[] cars = race.getCars();
         System.out.println("Cars: ");

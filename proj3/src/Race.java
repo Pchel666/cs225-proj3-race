@@ -1,3 +1,4 @@
+import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Random;
