@@ -34,12 +34,12 @@ public class Race {
         return cars;
     }
 
-    //carNumber pick 1-4
+    //pick carNumber 0-3
     public void setCarsXLocation(int carNumber, int x) {
-        cars[carNumber + 1].setPosX(x);
+        cars[carNumber].setPosX(x);
     }
     public void setCarsYLocation(int carNumber, int y) {
-        cars[carNumber + 1].setPosY(y);
+        cars[carNumber].setPosY(y);
     }
 
     public int getMapSize() {
@@ -55,13 +55,14 @@ public class Race {
     //map out the route the car is suppose to be taking
     //
 
+    //pick carNumber 0-3
     public void moveCar(int carNumber) {
-        int x = cars[carNumber + 1].getPosX();
-        int y = cars[carNumber + 1].getPosY();
+        int x = cars[carNumber].getPosX();
+        int y = cars[carNumber].getPosY();
 
         //work on
-        setCarsXLocation(carNumber, x + cars[carNumber + 1].getMaxSpeed());
-        setCarsYLocation(carNumber, y + cars[carNumber + 1].getMaxSpeed());
+        setCarsXLocation(carNumber, x + cars[carNumber].getMaxSpeed());
+        setCarsYLocation(carNumber, y + cars[carNumber].getMaxSpeed());
     }
 
     private Color createCarColor() {
