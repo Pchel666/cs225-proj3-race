@@ -10,6 +10,8 @@ public class Car {
     private Color color;
     private String name;
     private String tire;
+    private int[] path;
+    private int curr;
 
     public Car(){
         posX = 1;
@@ -20,12 +22,15 @@ public class Car {
         maxSpeed = 3;
     }
 
-    public Car(int posX, int posY, Color color, String name, String tire){
+    public Car(int posX, int posY, Color color, String name, String tire,
+               int[] path ){
         this.posX = posX;
         this.posY = posY;
         this.color = color;
         this.name = name;
         this.tire = tire;
+        this.path = path;
+        curr = 0;
 
         switch (tire) {
             case "Regular": maxSpeed = 3; break;
@@ -86,5 +91,17 @@ public class Car {
     public void move(int displacementX, int displacementY) {
         posX = posX + displacementX;
         posY = posY + displacementY;
+    }
+
+    public int destination(){
+        return path[curr];
+    }
+
+    public boolean setCurr(){
+        curr++;
+        if( curr >= path.length )
+            return true;
+
+        return false;
     }
 }
