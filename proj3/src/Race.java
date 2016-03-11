@@ -34,14 +34,6 @@ public class Race {
         return cars;
     }
 
-    //pick carNumber 0-3
-    public void setCarsXLocation(int carNumber, int x) {
-        cars[carNumber].setPosX(x);
-    }
-    public void setCarsYLocation(int carNumber, int y) {
-        cars[carNumber].setPosY(y);
-    }
-
     public int getMapSize() {
         return mapSize;
     }
@@ -55,14 +47,64 @@ public class Race {
     //map out the route the car is suppose to be taking
     //
 
-    //pick carNumber 0-3
-    public void moveCar(int carNumber) {
-        int x = cars[carNumber].getPosX();
-        int y = cars[carNumber].getPosY();
+    public void moveXY(int carNumber, int x, int y) {
+        cars[carNumber].setPosX(x);
+        cars[carNumber].setPosY(y);
+        //System.out.println(cars[carNumber].getPosX() + " x position");
+        //System.out.println(cars[carNumber].getPosY() + " y position");
+    }
 
-        //work on
-        setCarsXLocation(carNumber, x + cars[carNumber].getMaxSpeed());
-        setCarsYLocation(carNumber, y + cars[carNumber].getMaxSpeed());
+    public void moveCar(int carNumber, Location destinationCity){
+        int x0 = cars[carNumber].getPosX();
+        int y0 = cars[carNumber].getPosY();
+        int x1 = destinationCity.getXCoord();
+        int y1 = destinationCity.getYCoord();
+
+        boolean steep = Math.abs(y1 - y0) > Math.abs(x1 - x0);
+        if (steep) {
+            int t;
+            // swap(x0, y0);
+            t = x0;
+            x0 = y0;
+            y0 = t;
+            // swap(x1, y1);
+            t = x1;
+            x1 = y1;
+            y1 = t;
+        }
+        if (x0 > x1) {
+            int t;
+            // swap(x0, x1);
+            t = x0;
+            x0 = x1;
+            x1 = t;
+
+            // swap(y0, y1);
+            t = y0;
+            y0 = y1;
+            y1 = t;
+        }
+        int deltax = x1 - x0;
+        int deltay = Math.abs(y1 - y0);
+        int error = deltax / 2;
+        int ystep;
+        int y = y0;
+        if (y0 < y1)
+            ystep = 1;
+        else
+            ystep = -1;
+
+        for (int x = x0; x < x1; x++) {
+            if (steep)
+                moveXY(carNumber, y, x);
+            else
+                moveXY(carNumber, x, y);
+            error = error - deltay;
+            if (error < 0) {
+                y = y + ystep;
+                error = error + deltax;
+            }
+        }
     }
 
     private Color createCarColor() {

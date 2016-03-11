@@ -11,7 +11,7 @@ public class RaceTester {
         cities = race.getCities();
         System.out.println("Cities: ");
         for (Location l : cities) {
-            System.out.println("x: " + l.getXCoord() + " y: " + l.getYCoord() + ";");
+            System.out.println("x: " + l.getXCoord() + " y: " + l.getYCoord() + " name: " + l.getName() + ";");
         }
         Car[] cars = race.getCars();
         System.out.println("Cars: ");
@@ -30,5 +30,14 @@ public class RaceTester {
             }
             System.out.print("\n");
         }
+
+        int carNumber = 1;
+        Location city = race.getCities().get(1);
+
+        System.out.println("Car before: Xpostion: " + cars[carNumber].getPosX() + " Ypostion: " + cars[carNumber].getPosY());
+        System.out.println("City xcoord " + city.getXCoord() + " y: " + city.getYCoord() + " name: " + city.getName() + ";");
+
+        race.moveCar(carNumber, city);
+        System.out.println("Car after: Xpostion: " + cars[carNumber].getPosX() + " Ypostion: " + cars[carNumber].getPosY());
     }
 }
