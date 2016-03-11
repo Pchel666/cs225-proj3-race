@@ -95,10 +95,14 @@ public class Race {
             ystep = -1;
 
         for (int x = x0; x < x1; x++) {
-            if (steep)
+            if (steep){
                 moveXY(carNumber, y, x);
-            else
+                System.out.println(x + "steep");
+            }
+            else {
                 moveXY(carNumber, x, y);
+                System.out.println("not steep");
+            }
             error = error - deltay;
             if (error < 0) {
                 y = y + ystep;
