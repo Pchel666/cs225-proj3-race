@@ -2,6 +2,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +31,9 @@ public class RaceGui extends BorderPane {
         setupBottom();
     }
 
+    /**
+     * default constructor
+     */
     public void setupCenter(){
 
         grid = new GridPane();
@@ -46,13 +50,27 @@ public class RaceGui extends BorderPane {
         for( int i = 0; i < race.getMapSize(); i++ )
             grid.getRowConstraints().add(row);
 
-        Circle city = new Circle(8, Color.GREEN);
-
-        grid.add( city, race.getCities().get(0).getXCoord(), race.getCities().get(0).getYCoord() );
+        addCities();
         grid.setAlignment(Pos.CENTER);
+        addCars();
         setCenter(grid);
     }
 
+    /**
+     * adds cities in the form of a green circle
+     */
+    public void addCities(){
+
+        for( int i = 0; i < 4; i++ ) {
+
+            grid.add(new Circle(8, Color.GREEN),
+                    race.getCities().get(i).getYCoord(),
+                    race.getCities().get(i).getXCoord());
+        }
+    }
+    /**
+     * sets the bottom section of the race scene
+     */
     public void setupBottom(){
 
         HBox box = new HBox();
@@ -64,76 +82,90 @@ public class RaceGui extends BorderPane {
                 "-fx-border-color: darkgoldenrod;" +
                 "-fx-border-width: 12px");
 
-        Button start = new Button("start");
-        start.setOnAction(e->{
-            vroomVroom();
+        Button move = new Button("Move");
+        move.setOnAction(e->{
+            moveAll();
+            removeCars();
+            addCars();
         });
 
-        box.getChildren().addAll(start, back);
+        box.getChildren().addAll(move, back);
 
         setBottom(box);
     }
 
+    /**
+     * gets a back button
+     * @return Button
+     */
     public Button getBack(){
         return back;
     }
 
-    public void vroomVroom(){
+    /**
+     * moves all the cars
+     */
+    public void moveAll(){
 
-        Image carUno = new Image("CarPic.png");
-        ImageView car = new ImageView(carUno);
-        car.setFitHeight(20);
-        car.setFitWidth(25);
+        for( int i = 0; i < 4; i++ ){
+            race.moveCar(i, race.getCities().get(
+                    race.getCars()[i].destination() ));
 
-        grid.add( car, 0, 0 );
-
-        for( int i = 1; i < 4; i++ ){
-
-            try {
-                Thread.sleep(1000);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-
-            grid.getChildren().remove(car);
-            grid.add(car, i*4, i*4);
+            if( race.getCars()[i].getPosX() ==
+                    race.getCities().get(race.getCars()[i].destination()).getXCoord() &&
+                    race.getCars()[i].getPosY() ==
+                            race.getCities().get(race.getCars()[i].destination()).getYCoord() )
+                if( race.getCars()[i].setCurr() ) {
+                    Alert winnerMessage = new Alert(Alert.AlertType.INFORMATION);
+                    winnerMessage.setContentText("Car " + i + " is the winner!!!\n");
+                    winnerMessage.showAndWait();
+                }
         }
     }
 
+    /**
+     * sets the image for all the cars
+     */
     public void setCars(){
 
         red = new ImageView(new Image("RedCar.png"));
-        red.setFitHeight(20);
+        red.setFitHeight(15);
         red.setFitWidth(25);
 
         blue = new ImageView(new Image("BlueCar.png"));
-        blue.setFitHeight(20);
+        blue.setFitHeight(15);
         blue.setFitWidth(25);
 
         green = new ImageView(new Image("GreenCar.png"));
-        green.setFitHeight(20);
+        green.setFitHeight(15);
         green.setFitWidth(25);
 
         yellow = new ImageView(new Image( "YellowCar.png"));
-        yellow.setFitHeight(20);
+        yellow.setFitHeight(15);
         yellow.setFitWidth(25);
     }
 
+    /**
+     * adds the cars to the grid
+     */
     public void addCars(){
-        grid.add(red, race.getCars()[0].getPosX(),
-                race.getCars()[0].getPosY());
+        grid.add(red, race.getCars()[0].getPosY(),
+                race.getCars()[0].getPosX());
 
-        grid.add(blue, race.getCars()[1].getPosX(),
-                race.getCars()[1].getPosY());
+        grid.add(blue, race.getCars()[1].getPosY(),
+                race.getCars()[1].getPosX());
 
-        grid.add(green, race.getCars()[2].getPosX(),
-                race.getCars()[2].getPosY());
+        grid.add(green, race.getCars()[2].getPosY(),
+                race.getCars()[2].getPosX());
 
-        grid.add(yellow, race.getCars()[3].getPosX(),
-                race.getCars()[3].getPosY());
+        grid.add(yellow, race.getCars()[3].getPosY(),
+                race.getCars()[3].getPosX());
     }
 
-    public void removeCars(){
+    /**
+     * removes the cars from the grid
+     */
+    public void removeCars() {
         grid.getChildren().remove(red);
         grid.getChildren().remove(blue);
         grid.getChildren().remove(green);

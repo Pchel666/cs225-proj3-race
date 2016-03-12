@@ -6,6 +6,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
+    /**
+     * initializes and switches through the scenes
+     */
     public void start(Stage primaryStage) throws Exception{
 
         primaryStage.setTitle("Super Race car game of racing");

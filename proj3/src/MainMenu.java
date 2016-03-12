@@ -20,6 +20,9 @@ public class MainMenu extends BorderPane {
     private Button options;
     private Button quit;
 
+    /**
+     * constructor for MainMenu
+     */
     public MainMenu(){
 
         startButton = new Button("Start");
@@ -75,6 +78,9 @@ public class MainMenu extends BorderPane {
         return box;
     }
 
+    /**
+     * creates the text to show up on the top of the screen
+     */
     private void setupTopText(){
 
         VBox box = new VBox();
@@ -94,16 +100,28 @@ public class MainMenu extends BorderPane {
         setTop(box);
     }
 
+    /**
+     * gets the Start Button
+     * @return Button
+     */
     public Button getStartButton(){
 
         return startButton;
     }
 
+    /**
+     * gets the options button
+     * @return Button
+     */
     public Button getOptions(){
 
         return options;
     }
 
+    /**
+     * returns quit button
+     * @return Button
+     */
     public Button getQuit(){
 
         return quit;

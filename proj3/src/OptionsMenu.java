@@ -13,6 +13,9 @@ public class OptionsMenu extends VBox {
 
     private Button back;
 
+    /**
+     * default constuctor
+     */
     public OptionsMenu(){
 
         setStyle("-fx-background-color: black;" +
@@ -29,6 +32,9 @@ public class OptionsMenu extends VBox {
         getChildren().add(back);
     }
 
+    /**
+     * sets the text at the top
+     */
     private void setTopText(){
         Text top = new Text("Buy some Extreme DLC\n" +
                 "for more Extreme racing action!!!");
@@ -41,6 +47,11 @@ public class OptionsMenu extends VBox {
         getChildren().add(top);
     }
 
+    /**
+     * makes a row including description, button, price and
+     * @param description text describing what the item is
+     * @param price price of item
+     */
     private void makeRow( String description, String price ){
 
         HBox box = new HBox();
@@ -64,6 +75,10 @@ public class OptionsMenu extends VBox {
         getChildren().add(box);
     }
 
+    /**
+     * gets the back button
+     * @return Button
+     */
     public Button getBack() {
         return back;
     }
