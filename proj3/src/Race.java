@@ -155,6 +155,12 @@ public class Race {
                 y = y + ystep;
                 error = error + deltax;
             }
+            if(x == (x1 - 1)){
+                moveXY(carNumber, destinationCity.getXCoord(), destinationCity.getYCoord());
+                System.out.println("Car number: " + carNumber +  "x: " +destinationCity.getXCoord() +
+                        "y: " + destinationCity.getYCoord() + "here \n");
+                break;
+            }
         }
     }
     /**
