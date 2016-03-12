@@ -1,4 +1,3 @@
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,11 +20,38 @@ public class Race {
         int temp;
         for(int i=0; i< cars.length; i++) {
             temp = rand.nextInt(citiesTemp.size());
-            cars[i] = new Car(citiesTemp.get(temp).getXCoord(), citiesTemp.get(temp).getYCoord(), createCarColor(), name(i), selectTire());
+
+            cars[i] = new Car(citiesTemp.get(temp).getXCoord(),
+                    citiesTemp.get(temp).getYCoord(), createCarColor(),
+                    name(i), selectTire(), createPath() );
+            cars[i].setPosX(map.getCities().get(cars[i].destination()).getXCoord());
+            cars[i].setPosY(map.getCities().get(cars[i].destination()).getYCoord());
+
+            cars[i].setPath(createPath());
+
             citiesTemp.remove(temp);
         }
     }
 
+    public int[] createPath(){
+
+        int temp, swap;
+
+        int[] path = new int[4];
+        path[0] = 0;
+        path[1] = 1;
+        path[2] = 2;
+        path[3] = 3;
+
+        for( int i = 0; i < 4; i++ ){
+            swap = Math.abs(rand.nextInt()%4);
+            temp = path[swap];
+            path[swap] = path[i];
+            path[i] = temp;
+        }
+
+        return path;
+    }
     public Map getMap() {
         return map;
     }
