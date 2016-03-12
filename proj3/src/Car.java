@@ -3,6 +3,11 @@ import javafx.scene.paint.Color;
 
 import java.awt.*;
 
+/**
+ * This class is used to create a Car class, which takes a maxSpeed, x postion, y postion, color, name, and a tire type.
+ * @author Syed Gilani, Cory Skinner, Alex Popov
+ * @version 3.11.16
+ */
 public class Car {
     private int maxSpeed;
     private int posX;
@@ -14,7 +19,7 @@ public class Car {
     private int curr;
 
     /**
-     * default constructor for Car
+     * Car class constructor, used to create a test car.
      */
     public Car(){
         posX = 1;
@@ -26,13 +31,12 @@ public class Car {
     }
 
     /**
-     * setup constructor for Car
-     * @param posX x coordinates
-     * @param posY y coordinates
-     * @param color color of Car
+     * Car class constructor
+     * @param color color of the car
      * @param name name of the car
-     * @param tire type of tire
-     * @param path path for the car
+     * @param posX x position of the car
+     * @param posY y position of the car
+     * @param tire tire type of the car
      */
     public Car(int posX, int posY, Color color, String name,
                String tire, int[] path ){
@@ -53,24 +57,24 @@ public class Car {
     }
 
     /**
-     * gets the max speed of the car
-     * @return int
+     * Get the max speed of the car.
+     * @return an int, representing speed of the car
      */
     public int getMaxSpeed(){
         return maxSpeed;
     }
 
     /**
-     * sets the maxspeed
-     * @param maxSpeed int the new maxspeed
+     * Set the speed of the car.
+     * @param maxSpeed the maxSpeed of the car
      */
     public void setMaxSpeed(int maxSpeed){
         this.maxSpeed = maxSpeed;
     }
 
     /**
-     * gets the x coordinates
-     * @return
+     * Get the x position of the car.
+     * @return an int, the x position of the car
      */
     public int getPosX(){
         return posX;
