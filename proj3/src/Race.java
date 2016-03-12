@@ -2,13 +2,21 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class is used by the RaceGUI class
+ * @author Syed Gilani, Cory Skinner, Alex Popov
+ * @version 3.11.16
+ */
 public class Race {
     private Map map;
     private Random rand;
     private ArrayList<Location> cities;
     private Car[] cars;
     private int mapSize;
-
+    /**
+     * this is the constructor for the race class it takes a map size
+     * @param mapSize the size of the map
+     */
     public Race(int mapSize) {
         rand = new Random();
         cars = new Car[4];
@@ -32,7 +40,10 @@ public class Race {
             citiesTemp.remove(temp);
         }
     }
-
+    /**
+     * Create the a path
+     * @return an array of int.
+     */
     public int[] createPath(){
 
         int temp, swap;
@@ -52,34 +63,44 @@ public class Race {
 
         return path;
     }
+    /**
+     * Get the map size
+     * @return the map
+     */
     public Map getMap() {
         return map;
     }
-
+    
+    /**
+     * Get the car Size
+     * @return car size
+     */
     public Car[] getCars() {
         return cars;
     }
-
+    /**
+     * Get the map size
+     * @return map size
+     */
     public int getMapSize() {
         return mapSize;
     }
-
+    /**
+     * Get the cities
+     * @return a list of cities
+     */
     public ArrayList<Location> getCities() {
         return cities;
     }
 
-    //get the cars starting point
-    //then where it is suppose to be going
-    //map out the route the car is suppose to be taking
-    //
 
     public void moveXY(int carNumber, int x, int y) {
         cars[carNumber].setPosX(x);
         cars[carNumber].setPosY(y);
-        //System.out.println(cars[carNumber].getPosX() + " x position");
-        //System.out.println(cars[carNumber].getPosY() + " y position");
     }
-
+    /**
+     * Move the car
+     */
     public void moveCar(int carNumber, Location destinationCity){
         int x0 = cars[carNumber].getPosX();
         int y0 = cars[carNumber].getPosY();
@@ -136,7 +157,9 @@ public class Race {
             }
         }
     }
-
+    /**
+     * Create a Car color
+     */
     private Color createCarColor() {
         int r = rand.nextInt(256);
         int g = rand.nextInt(256);
@@ -144,11 +167,15 @@ public class Race {
 
         return Color.rgb(r, g, b );
     }
-
+    /**
+     * Create a name for the car
+     */
     private String name(int carCount) {
         return "Car_" + carCount;
     }
-
+    /**
+     * Select the tires for the car
+     */
     private String selectTire() {
         int value = rand.nextInt(3);
         String type = "";
